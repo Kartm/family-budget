@@ -1,9 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import { Counter } from './features/counter/Counter';
 import './App.css';
 
 function App() {
+  useEffect(() => {
+    console.log('hey')
+    const testFunction = async () => {
+      let API_SERVER = '';
+
+  switch (process.env.NODE_ENV) {
+      case 'development':
+          API_SERVER = 'http://localhost:8000';
+          break;
+      case 'production':
+          API_SERVER = process.env.REACT_APP_API_SERVER!;
+          break;
+      default:
+          API_SERVER = 'http://localhost:8000';
+          break;
+  }
+
+    const response = await fetch(`${API_SERVER}/test/`)
+      console.log(response)
+    }
+
+    testFunction()
+  }, [])
+
   return (
     <div className="App">
       <header className="App-header">
