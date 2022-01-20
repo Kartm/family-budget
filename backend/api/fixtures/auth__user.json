@@ -4,7 +4,7 @@
     "pk": 1,
     "fields": {
       "username": "user1",
-      "password": "password"
+      "password": "pbkdf2_sha256$216000$Jt3QG7Ejv0Fk$OAKfExsYmMjp6DOqhCIiFcbsQY2+4BxfPxHyzOofScQ="
     }
   },
   {
@@ -12,7 +12,7 @@
     "pk": 2,
     "fields": {
       "username": "user2",
-      "password": "password"
+      "password": "pbkdf2_sha256$216000$Jt3QG7Ejv0Fk$OAKfExsYmMjp6DOqhCIiFcbsQY2+4BxfPxHyzOofScQ="
     }
   }
 ]
