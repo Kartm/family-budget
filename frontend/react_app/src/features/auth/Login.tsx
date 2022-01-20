@@ -1,30 +1,48 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {incrementAsync} from "../counter/counterSlice";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {loginUser, selectIsLoggedIn} from "./authSlice";
+import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 const theme = createTheme();
 
 export default function Login() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+      const isLoggedIn = useAppSelector(selectIsLoggedIn);
+
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    const user = {
+      // @ts-ignore
+      username: data.get('username') as string,
+      // @ts-ignore
+      password: data.get('password') as string,
+    }
+
+    console.log(user)
+
+    dispatch(loginUser(user))
   };
+
+  useEffect(() => {
+        if(isLoggedIn){
+            navigate("/dashboard");
+        }
+    }, [isLoggedIn]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -38,21 +56,17 @@ export default function Login() {
             alignItems: 'center',
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
               fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
+              id="username"
+              label="Username"
+              name="username"
               autoFocus
             />
             <TextField

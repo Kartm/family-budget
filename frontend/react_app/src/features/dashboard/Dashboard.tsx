@@ -21,6 +21,9 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
+import {loginUser, logoutUser} from "../auth/authSlice";
+import {useAppDispatch} from "../../app/hooks";
+import {useNavigate} from "react-router-dom";
 
 const drawerWidth: number = 240;
 
@@ -49,6 +52,9 @@ const AppBar = styled(MuiAppBar, {
 const mdTheme = createTheme();
 
 function DashboardContent() {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -68,7 +74,10 @@ function DashboardContent() {
             >
               Budgets
             </Typography>
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={() => {
+                dispatch(logoutUser());
+                navigate('/login')
+            }}>
               Logout
             </IconButton>
           </Toolbar>
