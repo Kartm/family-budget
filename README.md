@@ -10,3 +10,14 @@
 ## Things Im aware of
 * i could use uuids instead of ids to reference stuff
 * folder structure is weird
+
+## Todo
+- [x] docker-compose
+- [x] models
+- [ ] business logic
+- [ ] authorization
+- [ ] tests
+- [ ] fixtures
+- [ ] filtering
+- [ ] pagination
+- [ ] UI
