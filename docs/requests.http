@@ -1,0 +1,20 @@
+POST http://127.0.0.1:8000/api/auth/register/
+Content-Type: application/json
+
+{
+  "username": "user3",
+  "password": "password"
+}
+
+###
+POST http://127.0.0.1:8000/api/auth/login/
+Content-Type: application/json
+
+{
+  "username": "user1",
+  "password": "password"
+}
+
+###
+GET http://127.0.0.1:8000/api/budgets/
+Accept: application/json
