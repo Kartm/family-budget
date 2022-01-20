@@ -3,14 +3,14 @@ from django.contrib.auth.models import User
 from django_extensions.db.models import TimeStampedModel
 
 
-class ActiveManager(models.Manager):
+class DeletableManager(models.Manager):
     def get_query_set(self):
-        return super(ActiveManager, self).get_query_set().filter(is_deleted=False)
+        return super(DeletableManager, self).get_query_set().filter(is_deleted=False)
 
 
-class StandardModel(models.Model, TimeStampedModel):
+class DeletableModel:
     is_deleted = models.BooleanField(default=False, db_index=True)
-    active = ActiveManager()
+    active = DeletableManager()
 
     class Meta:
         abstract = True
@@ -20,23 +20,40 @@ class StandardModel(models.Model, TimeStampedModel):
         self.save()
 
 
-class Budget(StandardModel):
-    owner = models.ForeignKey(User, related_name='budgets')
+class Budget(TimeStampedModel, DeletableModel):
+    owner = models.ForeignKey(
+        User,
+        related_name='budgets',
+        on_delete=models.CASCADE,
+    )
 
     name = models.CharField(max_length=200)
 
 
-class Category(StandardModel):
+class Category(TimeStampedModel, DeletableModel):
     name = models.CharField(max_length=200)
 
 
-class Entry(StandardModel):
-    category = models.ForeignKey(Category, related_name='entries')
+class Entry(TimeStampedModel, DeletableModel):
+    category = models.ForeignKey(
+        Category,
+        related_name='entries',
+        null=True,
+        on_delete=models.SET_NULL,
+    )
 
     amount = models.DecimalField(max_digits=11, decimal_places=2)
     description = models.CharField(max_length=200, blank=True)
 
 
-class ShareAccess(StandardModel):
-    question = models.ForeignKey(Budget, related_name='share_accesses')
-    user = models.ForeignKey(User, related_name='share_accesses')
+class ShareAccess(TimeStampedModel, DeletableModel):
+    budget = models.ForeignKey(
+        Budget,
+        related_name='share_accesses',
+        on_delete=models.CASCADE,
+    )
+    user = models.ForeignKey(
+        User,
+        related_name='share_accesses',
+        on_delete=models.CASCADE,
+    )
