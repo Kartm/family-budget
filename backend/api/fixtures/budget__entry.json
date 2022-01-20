@@ -1,0 +1,26 @@
+[
+  {
+    "model": "budget.entry",
+    "pk": 1,
+    "fields": {
+      "budget": 1,
+      "category": 1,
+      "amount": 7.99,
+      "description": "butter extra",
+      "created": "2013-03-16 17:41:28Z",
+      "modified": "2013-03-16 17:41:28Z"
+    }
+  },
+  {
+    "model": "budget.entry",
+    "pk": 2,
+    "fields": {
+      "budget": 1,
+      "category": 1,
+      "amount": 3.50,
+      "description": "cheaper butter",
+      "created": "2013-03-16 17:41:28Z",
+      "modified": "2013-03-16 17:41:28Z"
+    }
+  }
+]

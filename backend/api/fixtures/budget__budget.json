@@ -1,0 +1,32 @@
+[
+  {
+    "model": "budget.budget",
+    "pk": 1,
+    "fields": {
+      "owner": 1,
+      "name": "only my budget",
+      "created": "2013-03-16 17:41:28Z",
+      "modified": "2013-03-16 17:41:28Z"
+    }
+  },
+  {
+    "model": "budget.budget",
+    "pk": 2,
+    "fields": {
+      "owner": 1,
+      "name": "cool shared budget :)",
+      "created": "2013-03-16 17:41:28Z",
+      "modified": "2013-03-16 17:41:28Z"
+    }
+  },
+  {
+    "model": "budget.budget",
+    "pk": 3,
+    "fields": {
+      "owner": 2,
+      "name": "only my budget again",
+      "created": "2013-03-16 17:41:28Z",
+      "modified": "2013-03-16 17:41:28Z"
+    }
+  }
+]

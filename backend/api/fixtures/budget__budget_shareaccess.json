@@ -1,0 +1,12 @@
+[
+  {
+    "model": "budget.shareaccess",
+    "pk": 1,
+    "fields": {
+      "budget": 1,
+      "user": 2,
+      "created": "2013-03-16 17:41:28Z",
+      "modified": "2013-03-16 17:41:28Z"
+    }
+  }
+]
