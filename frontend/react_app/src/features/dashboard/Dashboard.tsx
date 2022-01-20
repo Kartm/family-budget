@@ -21,8 +21,8 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-import {loginUser, logoutUser} from "../auth/authSlice";
-import {useAppDispatch} from "../../app/hooks";
+import {loginUser, logoutUser, selectIsLoggedIn, selectUserDetails} from "../auth/authSlice";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {useNavigate} from "react-router-dom";
 
 const drawerWidth: number = 240;
@@ -54,6 +54,8 @@ const mdTheme = createTheme();
 function DashboardContent() {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+  const userDetails = useAppSelector(selectUserDetails);
+
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -72,7 +74,7 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Budgets
+              logged in as {userDetails?.username}
             </Typography>
             <IconButton color="inherit" onClick={() => {
                 dispatch(logoutUser());
