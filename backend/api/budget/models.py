@@ -41,6 +41,11 @@ class Entry(TimeStampedModel, DeletableModel):
         null=True,
         on_delete=models.SET_NULL,
     )
+    budget = models.ForeignKey(
+        Budget,
+        related_name='entries',
+        on_delete=models.CASCADE,
+    )
 
     amount = models.DecimalField(max_digits=11, decimal_places=2)
     description = models.CharField(max_length=200, blank=True)
