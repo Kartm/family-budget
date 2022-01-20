@@ -12,10 +12,25 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {loginUser, registerUser, selectIsLoggedIn, selectIsRegisterSuccess} from "./authSlice";
+import {useAppDispatch, useAppSelector} from "../../app/hooks";
+import {useNavigate} from "react-router-dom";
+import {useEffect} from "react";
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function Register() {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+    const isRegisterSuccess = useAppSelector(selectIsRegisterSuccess);
+
+    useEffect(() => {
+        if(isRegisterSuccess){
+            navigate("/login");
+        }
+    }, [isRegisterSuccess]);
+
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -24,6 +39,17 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     });
+
+    const user = {
+      // @ts-ignore
+      username: data.get('username') as string,
+      // @ts-ignore
+      password: data.get('password') as string,
+    }
+
+    console.log(user)
+
+    dispatch(registerUser(user))
   };
 
   return (
@@ -50,6 +76,7 @@ export default function SignUp() {
                   id="username"
                   label="Username"
                   name="username"
+                  autoComplete="username"
                 />
               </Grid>
               <Grid item xs={12}>

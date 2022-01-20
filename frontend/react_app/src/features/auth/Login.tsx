@@ -19,7 +19,7 @@ const theme = createTheme();
 export default function Login() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-      const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
 
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -68,6 +68,7 @@ export default function Login() {
               label="Username"
               name="username"
               autoFocus
+              autoComplete="username"
             />
             <TextField
               margin="normal"

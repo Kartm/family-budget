@@ -19,3 +19,9 @@ export function login({username, password}: {username: string, password: string}
     return axios.post<{key: string}>(`${API_SERVER}/api/auth/login/`, {username, password})
         .then(response => response.data);
 }
+
+export function register({username, password}: {username: string, password: string}) {
+    return axios.post<{key: string}>(`${API_SERVER}/api/auth/register/`, {username, password})
+        .then(response => response.data);
+}
+

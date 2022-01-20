@@ -16,5 +16,10 @@ Content-Type: application/json
 }
 
 ###
+GET http://127.0.0.1:8000/api/auth/details/
+Content-Type: application/json
+Authorization: Token 684d1e16354db8bf8842bbdcad6a09158c2090fa
+
+###
 GET http://127.0.0.1:8000/api/budgets/
 Accept: application/json
