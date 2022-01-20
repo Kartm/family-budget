@@ -1,6 +1,6 @@
 [
   {
-    "model": "budget.Category",
+    "model": "budget.entrycategory",
     "pk": 1,
     "fields": {
       "name": "Groceries",

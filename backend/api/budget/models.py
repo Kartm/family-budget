@@ -30,13 +30,13 @@ class Budget(TimeStampedModel, DeletableModel):
     name = models.CharField(max_length=200)
 
 
-class Category(TimeStampedModel, DeletableModel):
+class EntryCategory(TimeStampedModel, DeletableModel):
     name = models.CharField(max_length=200)
 
 
 class Entry(TimeStampedModel, DeletableModel):
     category = models.ForeignKey(
-        Category,
+        EntryCategory,
         related_name='entries',
         null=True,
         on_delete=models.SET_NULL,
