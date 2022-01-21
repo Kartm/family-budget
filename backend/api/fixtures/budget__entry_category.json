@@ -3,7 +3,8 @@
     "model": "budget.entrycategory",
     "pk": 1,
     "fields": {
-      "name": "Groceries",
+      "name": "Salary",
+      "is_expense": false,
       "created": "2013-03-16 17:41:28Z",
       "modified": "2013-03-16 17:41:28Z"
     }
@@ -12,7 +13,7 @@
     "model": "budget.entrycategory",
     "pk": 2,
     "fields": {
-      "name": "Dining out",
+      "name": "Groceries",
       "created": "2013-03-16 17:41:28Z",
       "modified": "2013-03-16 17:41:28Z"
     }
@@ -21,7 +22,7 @@
     "model": "budget.entrycategory",
     "pk": 3,
     "fields": {
-      "name": "Transportation",
+      "name": "Dining out",
       "created": "2013-03-16 17:41:28Z",
       "modified": "2013-03-16 17:41:28Z"
     }
@@ -30,7 +31,7 @@
     "model": "budget.entrycategory",
     "pk": 4,
     "fields": {
-      "name": "Health",
+      "name": "Transportation",
       "created": "2013-03-16 17:41:28Z",
       "modified": "2013-03-16 17:41:28Z"
     }
@@ -39,7 +40,7 @@
     "model": "budget.entrycategory",
     "pk": 5,
     "fields": {
-      "name": "Education",
+      "name": "Health",
       "created": "2013-03-16 17:41:28Z",
       "modified": "2013-03-16 17:41:28Z"
     }
@@ -47,6 +48,15 @@
   {
     "model": "budget.entrycategory",
     "pk": 6,
+    "fields": {
+      "name": "Education",
+      "created": "2013-03-16 17:41:28Z",
+      "modified": "2013-03-16 17:41:28Z"
+    }
+  },
+  {
+    "model": "budget.entrycategory",
+    "pk": 7,
     "fields": {
       "name": "Other",
       "created": "2013-03-16 17:41:28Z",

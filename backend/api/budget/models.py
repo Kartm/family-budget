@@ -32,6 +32,7 @@ class Budget(TimeStampedModel, DeletableModel):
 
 class EntryCategory(TimeStampedModel, DeletableModel):
     name = models.CharField(max_length=200)
+    is_expense = models.BooleanField(default=True)
 
 
 class Entry(TimeStampedModel, DeletableModel):

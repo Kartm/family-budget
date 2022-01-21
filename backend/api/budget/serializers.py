@@ -24,7 +24,7 @@ class BudgetShareAccessSerializer(serializers.ModelSerializer):
 class BudgetEntryCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = EntryCategory
-        fields = ('id', 'name',)
+        fields = ('id', 'name', 'is_expense')
 
 
 class BudgetEntrySerializer(serializers.ModelSerializer):
