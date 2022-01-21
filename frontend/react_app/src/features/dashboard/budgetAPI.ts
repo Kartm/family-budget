@@ -37,10 +37,10 @@ export function apiGetUsers() {
 }
 
 export function getBudgets({owner_id}: {owner_id?: string}) {
-        const queryParams = owner_id ? `?owner_id=${owner_id}`:''
+        let queryParams = owner_id ? `?owner_id=${owner_id}`:''
 
-    return instance.get<Budget[]>(`${API_SERVER}/api/budgets/${queryParams}`)
-        .then(response => response.data);
+    return instance.get<{results: Budget[]}>(`${API_SERVER}/api/budgets/${queryParams}`)
+        .then(response => response.data.results);
 }
 
 export function apiGetCategories() {

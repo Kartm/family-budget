@@ -15,6 +15,7 @@
 * loading screens
 * missing sharing budgets
 * mess in types
+* error handling
 
 ## Todo
 - [x] docker-compose

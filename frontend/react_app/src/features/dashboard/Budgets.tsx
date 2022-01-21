@@ -6,10 +6,9 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Title from './Title';
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
-import {Link, useNavigate} from "react-router-dom";
-import {getLoggedInUserDetails, selectUserDetails} from "../auth/authSlice";
+import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {loadBudget, loadBudgets, loadCategories, loadUsers, selectBudgets, selectUsers} from "./budgetSlice";
+import {loadBudgets, loadUsers, selectBudgets, selectUsers} from "./budgetSlice";
 import Select from "@mui/material/Select";
 import Container from "@mui/material/Container";
 

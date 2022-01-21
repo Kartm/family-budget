@@ -1,7 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState, AppThunk} from '../../app/store';
 import {apiCreateEntry, apiGetCategories, apiGetUsers, getBudget, getBudgets} from './budgetAPI';
-import {incrementByAmount, selectCount} from "../counter/counterSlice";
 import {UserDetails} from "../auth/authSlice";
 
 
@@ -77,6 +76,7 @@ export const budgetSlice = createSlice({
         setUsers(state, action: PayloadAction<UserDetails[]>) {
             state.users = action.payload;
         }
+
     },
 });
 

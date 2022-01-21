@@ -7,12 +7,18 @@ from .serializers import BudgetSerializer, BudgetDetailSerializer, BudgetEntrySe
 
 from django.db.models import Sum, Value, Q
 from django.db.models.functions import Coalesce
+from rest_framework.pagination import PageNumberPagination
+
+class StandardPaginationClass(PageNumberPagination):
+    page_size = 5
+    page_size_query_param = 'page_size'
 
 
 class BudgetListCreateView(generics.ListCreateAPIView):
     queryset = Budget.objects.all()
     serializer_class = BudgetSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = StandardPaginationClass
 
     def get_queryset(self):
         qs = super().get_queryset()
