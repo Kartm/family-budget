@@ -42,7 +42,7 @@ export default function Budgets() {
               <TableCell>{budget.created}</TableCell>
               <TableCell>{budget.modified}</TableCell>
               <TableCell>{budget.name}</TableCell>
-              <TableCell>{budget.balance}</TableCell>
+              <TableCell>{budget.balance} PLN</TableCell>
               <TableCell align="right">
                 <Link to={`/budgets/${budget.id}/`}>Details</Link>
               </TableCell>

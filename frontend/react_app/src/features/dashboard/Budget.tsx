@@ -9,12 +9,15 @@ import {
     selectCategories,
     selectCurrentBudget
 } from "./budgetSlice";
-import {useParams} from "react-router-dom";
+import {Outlet, useParams} from "react-router-dom";
 import Table from "@mui/material/Table";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import TableBody from "@mui/material/TableBody";
+import Grid from "@mui/material/Grid";
+import Paper from "@mui/material/Paper";
+import Container from "@mui/material/Container";
 
 export default function Budget() {
     const params = useParams();
@@ -50,7 +53,9 @@ export default function Budget() {
 
     return (
         <React.Fragment>
-            <Title>{budget.name}</Title>
+            <Title>
+                {`${budget.name} (${budget.balance} PLN)`}
+            </Title>
             <Title>Shared with: {budget.share_accesses.map(access => access.user.username)}</Title>
             <Table size="small">
                 <TableHead>
@@ -68,7 +73,7 @@ export default function Budget() {
                             <TableCell>{entry.created}</TableCell>
                             <TableCell>{entry.category.name}</TableCell>
                             <TableCell>{entry.description}</TableCell>
-                            <TableCell align="right">{entry.amount}</TableCell>
+                            <TableCell align="right">{entry.amount} PLN</TableCell>
                             <TableCell align="right"></TableCell>
                         </TableRow>
                     ))}
