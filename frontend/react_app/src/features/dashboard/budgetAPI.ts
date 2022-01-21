@@ -1,5 +1,6 @@
 import axios from "axios";
 import {Budget, BudgetDetails, Entry, EntryCategory} from "./budgetSlice";
+import {UserDetails} from "../auth/authSlice";
 
 let API_SERVER = '';
 
@@ -30,9 +31,15 @@ instance.interceptors.request.use(
     error => Promise.reject(error)
 );
 
+export function apiGetUsers() {
+    return instance.get<UserDetails[]>(`${API_SERVER}/api/auth/users/`)
+        .then(response => response.data);
+}
 
-export function getBudgets() {
-    return instance.get<Budget[]>(`${API_SERVER}/api/budgets/`)
+export function getBudgets({owner_id}: {owner_id?: string}) {
+        const queryParams = owner_id ? `?owner_id=${owner_id}`:''
+
+    return instance.get<Budget[]>(`${API_SERVER}/api/budgets/${queryParams}`)
         .then(response => response.data);
 }
 

@@ -1,6 +1,6 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {RootState, AppThunk} from '../../app/store';
-import {apiCreateEntry, apiGetCategories, getBudget, getBudgets} from './budgetAPI';
+import {apiCreateEntry, apiGetCategories, apiGetUsers, getBudget, getBudgets} from './budgetAPI';
 import {incrementByAmount, selectCount} from "../counter/counterSlice";
 import {UserDetails} from "../auth/authSlice";
 
@@ -11,6 +11,7 @@ export interface Budget {
     created: string;
     modified: string;
     balance: number;
+    owner: UserDetails;
 }
 
 export interface EntryCategory {
@@ -47,6 +48,7 @@ export interface AuthState {
     budgets: Budget[],
     categories: EntryCategory[],
     currentBudget: BudgetDetails | null;
+    users: UserDetails[];
 }
 
 
@@ -56,6 +58,7 @@ const initialState: AuthState = {
     budgets: [],
     categories: [],
     currentBudget: null,
+    users: [],
 };
 
 export const budgetSlice = createSlice({
@@ -70,20 +73,38 @@ export const budgetSlice = createSlice({
         },
         setCurrentBudget(state, action: PayloadAction<BudgetDetails>) {
             state.currentBudget = action.payload;
+        },
+        setUsers(state, action: PayloadAction<UserDetails[]>) {
+            state.users = action.payload;
         }
     },
 });
 
-export const {setBudgets, setCategories, setCurrentBudget} = budgetSlice.actions;
+export const {setUsers, setBudgets, setCategories, setCurrentBudget} = budgetSlice.actions;
 
+export const selectUsers = (state: RootState) => state.budget.users;
 export const selectBudgets = (state: RootState) => state.budget.budgets;
 export const selectCategories = (state: RootState) => state.budget.categories;
 export const selectCurrentBudget = (state: RootState) => state.budget.currentBudget;
 
+export const loadUsers = createAsyncThunk(
+    'budget/load-users',
+    async (_, thunkAPI) => {
+        const response = await apiGetUsers();
+
+        if (response) {
+            thunkAPI.dispatch(setUsers(response))
+        }
+
+        return response;
+    }
+);
+
+
 export const loadBudgets = createAsyncThunk(
     'budget/load-budgets',
-    async (_, thunkAPI) => {
-        const response = await getBudgets();
+    async ({owner_id}: {owner_id: string}, thunkAPI) => {
+        const response = await getBudgets({owner_id});
 
         if (response) {
             thunkAPI.dispatch(setBudgets(response))

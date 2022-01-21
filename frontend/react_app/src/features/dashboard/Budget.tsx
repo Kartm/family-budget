@@ -33,6 +33,7 @@ export default function Budget() {
         amount: 0
     })
 
+
     const dispatch = useAppDispatch();
     const budget = useAppSelector(selectCurrentBudget);
     const categories = useAppSelector(selectCategories);
@@ -50,8 +51,6 @@ export default function Budget() {
     }
 
     function onCreateEntry() {
-        console.log(formData)
-
         dispatch(createEntry(formData))
     }
 
@@ -91,7 +90,8 @@ export default function Budget() {
                                               {"Category"}
                                           </option>
                                         {categories.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
-                                    </Select></TableCell>
+                                    </Select>
+                                </TableCell>
                                 <TableCell>
                                     <Input placeholder="Description" type={"text"} value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})}/></TableCell>
                                 <TableCell align="right">

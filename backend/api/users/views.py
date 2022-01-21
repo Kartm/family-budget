@@ -1,9 +1,7 @@
-from rest_auth.views import (LoginView, LogoutView)
-from rest_framework.authentication import TokenAuthentication
+from rest_auth.views import (LoginView)
 from rest_framework import permissions, generics
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import CreateAPIView, get_object_or_404
-from django.contrib.auth import get_user_model  # If used custom user model
+from django.contrib.auth import get_user_model
 
 from .serializers import UserCreateSerializer, UserDetailsSerializer
 
@@ -31,3 +29,12 @@ class UserDetailsView(generics.RetrieveAPIView):
             get_user_model(),
             id=self.request.user.id
         )
+
+
+class UserListView(generics.ListAPIView):
+    permission_classes = [
+        permissions.IsAuthenticated,
+    ]
+    User = get_user_model()
+    queryset = User.objects.all()
+    serializer_class = UserDetailsSerializer

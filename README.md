@@ -13,14 +13,16 @@
 * passwords are plaintext
 * components could've been split more, but I kept them as it is for convenience
 * loading screens
+* missing sharing budgets
+* mess in types
 
 ## Todo
 - [x] docker-compose
 - [x] models
-- [ ] business logic
+- [x] business logic
 - [x] authorization
 - [ ] tests
 - [x] fixtures
 - [ ] filtering
 - [ ] pagination
-- [ ] UI
+- [x] UI

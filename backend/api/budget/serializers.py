@@ -6,11 +6,12 @@ from users.serializers import UserDetailsSerializer
 
 
 class BudgetSerializer(serializers.ModelSerializer):
+    owner = UserDetailsSerializer(read_only=True)
     balance = serializers.DecimalField(max_digits=11, decimal_places=2)
 
     class Meta:
         model = Budget
-        fields = ("id", "name", "created", "modified","balance")
+        fields = ("id", "name", "created", "modified","balance", "owner")
 
 
 class BudgetShareAccessSerializer(serializers.ModelSerializer):
