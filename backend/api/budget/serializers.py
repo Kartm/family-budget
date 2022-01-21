@@ -30,18 +30,18 @@ class BudgetEntryCategorySerializer(serializers.ModelSerializer):
 class BudgetEntrySerializer(serializers.ModelSerializer):
     category = BudgetEntryCategorySerializer(read_only=True)
 
+    category_id = serializers.PrimaryKeyRelatedField(queryset=EntryCategory.objects.all(), source='category')
+    budget_id = serializers.PrimaryKeyRelatedField(queryset=Budget.objects.all(), source='budget')
+
     class Meta:
         model = Entry
-        fields = ('id', 'amount', 'description', 'created', 'category',)
+        fields = ('id', 'amount', 'description', 'created', 'category', 'category_id', 'budget_id')
 
 
 class BudgetDetailSerializer(serializers.ModelSerializer):
     owner = UserDetailsSerializer(read_only=True)
     share_accesses = BudgetShareAccessSerializer(read_only=True, many=True)
     entries = BudgetEntrySerializer(read_only=True, many=True)
-
-    # todo conditional accesses return
-
     balance = serializers.DecimalField(max_digits=11, decimal_places=2)
 
     class Meta:

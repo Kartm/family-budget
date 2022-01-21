@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Budget, BudgetDetails} from "./budgetSlice";
+import {Budget, BudgetDetails, Entry, EntryCategory} from "./budgetSlice";
 
 let API_SERVER = '';
 
@@ -36,8 +36,18 @@ export function getBudgets() {
         .then(response => response.data);
 }
 
+export function apiGetCategories() {
+    return instance.get<EntryCategory[]>(`${API_SERVER}/api/categories/`)
+        .then(response => response.data);
+}
+
 export function getBudget(budgetId: string) {
     return instance.get<BudgetDetails>(`${API_SERVER}/api/budgets/${budgetId}/`)
+        .then(response => response.data);
+}
+
+export function apiCreateEntry(formData: {budget_id: string; category_id: string, description: string, amount: number}) {
+    return instance.post<Entry>(`${API_SERVER}/api/entries/`, {budget_id: formData.budget_id, category_id: formData.category_id, description: formData.description, amount: formData.amount})
         .then(response => response.data);
 }
 

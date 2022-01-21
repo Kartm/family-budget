@@ -2,8 +2,8 @@ from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.generics import get_object_or_404
 
-from .models import Budget
-from .serializers import BudgetSerializer, BudgetDetailSerializer
+from .models import Budget, EntryCategory
+from .serializers import BudgetSerializer, BudgetDetailSerializer, BudgetEntrySerializer, BudgetEntryCategorySerializer
 
 from django.db.models import Sum, Value
 from django.db.models.functions import Coalesce
@@ -32,3 +32,14 @@ class BudgetRetrieveDetailView(generics.RetrieveAPIView):
             qs,
             id=self.kwargs.get('id')
         )
+
+
+class BudgetEntriesCreateView(generics.CreateAPIView):
+    serializer_class = BudgetEntrySerializer
+    permission_classes = [IsAuthenticated]
+
+
+class BudgetEntryCategoriesListView(generics.ListAPIView):
+    serializer_class = BudgetEntryCategorySerializer
+    permission_classes = [IsAuthenticated]
+    queryset = EntryCategory.objects.all()
