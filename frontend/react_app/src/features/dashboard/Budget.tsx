@@ -18,6 +18,10 @@ import TableBody from "@mui/material/TableBody";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
+import Select from "@mui/material/Select";
+import Input from '@material-ui/core/Input';
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 export default function Budget() {
     const params = useParams();
@@ -82,18 +86,20 @@ export default function Budget() {
                             <>
                                 <TableCell></TableCell>
                                 <TableCell>
-                                    <select onChange={(e) => setFormData({...formData, category_id: e.target.value})}>
-                                        <option selected disabled>-- select category --</option>
+                                    <Select native defaultValue="none" onChange={(e) => setFormData({...formData, category_id: e.target.value as string})}>
+                                        <option value="none" disabled>
+                                              {"Category"}
+                                          </option>
                                         {categories.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
-                                    </select></TableCell>
+                                    </Select></TableCell>
                                 <TableCell>
-                                    <input type={"text"} value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})}/></TableCell>
+                                    <Input placeholder="Description" type={"text"} value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})}/></TableCell>
                                 <TableCell align="right">
-                                    <input type={"number"} value={formData.amount} onChange={(e) => setFormData({...formData, amount: +e.target.value})}/></TableCell>
+                                    <Input placeholder="Amount" type={"number"} value={formData.amount} onChange={(e) => setFormData({...formData, amount: +e.target.value})}/></TableCell>
                                 <TableCell align="right">
-                                    <button onClick={() => onCreateEntry()}>Save</button>
+                                    <Button onClick={() => onCreateEntry()}>Save</Button>
                                 </TableCell></> : <TableCell colSpan={5} align={"right"}>
-                                <button onClick={() => setIsAddingNewRow(true)}>Add new entry</button>
+                                <Button onClick={() => setIsAddingNewRow(true)}>Add new entry</Button>
                             </TableCell>}
                     </TableRow>
                 </TableBody>

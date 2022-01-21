@@ -15,6 +15,7 @@ import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
 import { Outlet } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 const drawerWidth: number = 240;
 
@@ -70,12 +71,12 @@ function DashboardContent() {
                         >
                             Logged in as {userDetails?.username}
                         </Typography>
-                        <IconButton color="inherit" onClick={() => {
+                        <Button color="inherit" onClick={() => {
                             dispatch(logoutUser());
                             navigate('/login')
                         }}>
                             Logout
-                        </IconButton>
+                        </Button>
                     </Toolbar>
                 </AppBar>
                 <Box
