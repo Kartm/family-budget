@@ -13,9 +13,17 @@ export interface Budget {
     balance: number;
 }
 
+export interface EntryCategory {
+    id: string;
+    name: string;
+}
+
 export interface Entry {
     id: string;
     description: string;
+    amount: string;
+    created: string;
+    category: EntryCategory;
 }
 
 export interface BudgetShareAccess {

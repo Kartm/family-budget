@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 
-from .models import Budget, ShareAccess, Entry
+from .models import Budget, ShareAccess, Entry, EntryCategory
 from users.serializers import UserDetailsSerializer
 
 
@@ -21,18 +21,26 @@ class BudgetShareAccessSerializer(serializers.ModelSerializer):
         fields = ('id', 'user')
 
 
+class BudgetEntryCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EntryCategory
+        fields = ('id', 'name',)
+
+
 class BudgetEntrySerializer(serializers.ModelSerializer):
-    # user = UserDetailsSerializer(read_only=True)
+    category = BudgetEntryCategorySerializer(read_only=True)
 
     class Meta:
         model = Entry
-        fields = ('id', 'amount', 'description')
+        fields = ('id', 'amount', 'description', 'created', 'category',)
 
 
 class BudgetDetailSerializer(serializers.ModelSerializer):
     owner = UserDetailsSerializer(read_only=True)
     share_accesses = BudgetShareAccessSerializer(read_only=True, many=True)
     entries = BudgetEntrySerializer(read_only=True, many=True)
+
+    # todo conditional accesses return
 
     balance = serializers.DecimalField(max_digits=11, decimal_places=2)
 

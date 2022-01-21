@@ -14,6 +14,7 @@ import {getLoggedInUserDetails, loginUser, logoutUser, selectIsLoggedIn, selectU
 import {useAppDispatch, useAppSelector} from "../../app/hooks";
 import {useNavigate} from "react-router-dom";
 import {useEffect} from "react";
+import { Outlet } from "react-router-dom";
 
 const drawerWidth: number = 240;
 
@@ -94,7 +95,7 @@ function DashboardContent() {
                         <Grid container spacing={3}>
                             <Grid item xs={12}>
                                 <Paper sx={{p: 2, display: 'flex', flexDirection: 'column'}}>
-                                    <Budgets/>
+                                    <Outlet/>
                                 </Paper>
                             </Grid>
                         </Grid>

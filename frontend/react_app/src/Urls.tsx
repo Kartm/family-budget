@@ -8,6 +8,7 @@ import {useAppSelector} from "./app/hooks";
 import {selectCount} from "./features/counter/counterSlice";
 import {selectIsLoggedIn} from "./features/auth/authSlice";
 import Budget from "./features/dashboard/Budget";
+import Budgets from "./features/dashboard/Budgets";
 
 function Urls(props: JSX.IntrinsicAttributes) {
     const isLoggedIn = useAppSelector(selectIsLoggedIn);
@@ -18,9 +19,9 @@ function Urls(props: JSX.IntrinsicAttributes) {
                 <Routes>
                     <Route path="login" element={isLoggedIn ? <Navigate to="/budgets" /> : <Login/>} />
                     <Route path="register" element={isLoggedIn ? <Navigate to="/budgets" /> : <Register/>} />
-                    <Route path="budgets">
-                        <Route index element={isLoggedIn ? <Dashboard/>: <Navigate to="/login" />}></Route>
-                        <Route path=":budgetId" element={isLoggedIn ? <Budget/>: <Navigate to="/login" />} />
+                    <Route path="budgets" element={isLoggedIn ? <Dashboard/>: <Navigate to="/login" />}>
+                        <Route index element={<Budgets/>}></Route>
+                        <Route path=":budgetId" element={<Budget/>} />
                     </Route>
 
                     <Route path="/" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
