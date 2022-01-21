@@ -40,7 +40,7 @@ export default function Login() {
 
   useEffect(() => {
         if(isLoggedIn){
-            navigate("/dashboard");
+            navigate("/budgets");
         }
     }, [isLoggedIn]);
 
